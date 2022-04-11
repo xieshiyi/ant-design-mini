@@ -198,9 +198,9 @@ var simulatorContainer = document.querySelector(".simulatorContainer");
 var simulator;
 var prevPath = "";
 var DEFAULT_STYLE =
-  "width:390px; height:740px; position:fixed; top:120px; right:50px";
+  "width:375px; height:662px; position:fixed; top:120px; right:50px; border: 1px solid #eee; border-radius: 12px; overflow:hidden";
 var DISAPPEAR_STYLE =
-  "width:390px; height:740px; position:fixed; top:120px; right:50px; display:none";
+  "width:375px; height:662px; position:fixed; top:120px; right:50px; display:none; border: 1px solid #eee; border-radius: 12px; overflow:hidden";
 function debounce(fn, delay) {
   var _this = this;
   var timer = null;
@@ -253,6 +253,11 @@ function genSimulator(){
     simulatorContainer.id = "simulatorContainer";
     simulatorContainer.className = "simulatorContainer";
     simulatorContainer.style = DEFAULT_STYLE;
+
+    const bar = document.createElement("div");
+    bar.style = "width: 375px;height: 52px;position: fixed;top: 731px;overflow: hidden;background: white;border-bottom-left-radius: 12px;border-bottom-right-radius: 12px;";
+    simulatorContainer.appendChild(bar);
+
     var body = document.querySelector("body");
     body.appendChild(simulatorContainer);
   }
@@ -261,7 +266,7 @@ function genSimulator(){
 exports.default = function (props) {
   genSimulator()
   debounceReLaunch(props.pages);
-  var _a = (0, react_1.useState)({ width: 395, height: 740 }),
+  var _a = (0, react_1.useState)({ width: 375, height: 662 }),
     lyraSize = _a[0],
     setLyraSize = _a[1];
   (0, react_1.useEffect)(
@@ -283,13 +288,29 @@ exports.default = function (props) {
           __assign(
             {
               container: "simulatorContainer",
-              hideStatusBar: true,
               theme: "light",
+              liteMode: true,
               hideTopBar: true,
               hideBottomBar: true,
               defaultDeviceName: "iPhone 13",
               internalStorageSeparatedKey: "umi",
               clearStore: true,
+              device: {
+                width: 375,
+                height: 662,
+                hideStatusBar: true,
+                titleBar:{
+                  height: 65
+                }
+              },
+              externalStyleLink:{
+                simulator: [
+                  'https://gw.alipayobjects.com/os/antd-mini/krmnox/index.css'
+                ],
+                render: [
+                  'https://gw.alipayobjects.com/os/antd-mini/ajc9ik/render.css'
+                ]
+              },
               initWithAutoZoom: true,
               transparentBackground: true,
               launchParams: {
