@@ -6,26 +6,32 @@ Component({
   data: {
     selfValue: undefined,
     selfFocus: false,
-    controlled: false,
+    selfControlled: false,
   },
   onInit() {
-    this.setControlled = true;
-    this.setData({
-      controlled: 'value' in this.props,
-    });
+    this.setselfControlled = true;
+    this.setDefaultValue();
   },
   didMount() {
-    if (this.setControlled) {
+    if (this.setselfControlled) {
       return;
     }
-    this.setData({
-      controlled: 'value' in this.props,
-    });
+    this.setDefaultValue();
   },
-  setControlled: false,
+  setselfControlled: false,
   methods: {
+    setDefaultValue() {
+      const selfValue = typeof this.props.value === 'undefined' ? this.props.defaultValue :this.props.value;
+      const obj = {
+        selfControlled: 'value' in this.props,
+      };
+      if (typeof selfValue !== 'undefined') {
+        obj.selfValue = selfValue;
+      }
+      this.setData(obj);
+    },
     onChange(value, e) {
-      if (!this.data.controlled) {
+      if (!this.data.selfControlled) {
         this.setData({
           selfValue: value,
         });

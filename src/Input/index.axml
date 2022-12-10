@@ -11,13 +11,14 @@
   </view>
   <view class="amd-v1-input-line">
     <input
-      enableNative="{{enableNative}}" 
+      enableNative="{{enableNative}}"
+      always-system="{{alwaysSystem}}"
+      controlled="{{controlled}}"
       name="{{name}}"
       class="amd-v1-input-content {{inputClassName || ''}}"
       style="{{inputStyle}}"
       disabled="{{readOnly || disabled}}" 
-      value="{{controlled ? value : selfValue}}"
-      defaultValue="{{defaultValue}}"
+      value="{{selfControlled ? value : selfValue}}"
       type="{{type}}"
       password="{{password}}"
       placeholder="{{placeholder}}" 
@@ -38,7 +39,7 @@
     />
     <view
       a:if="{{allowClear}}"
-      class="amd-v1-input-clear {{(controlled ? value : selfValue) && (controlled ? value : selfValue).length > 0 ? 'amd-v1-input-clear-show' : 'amd-v1-input-clear-hidden'}}" 
+      class="amd-v1-input-clear {{(selfControlled ? value : selfValue) && (selfControlled ? value : selfValue).length > 0 ? 'amd-v1-input-clear-show' : 'amd-v1-input-clear-hidden'}}" 
       onTap="onClear">
       <icon size="x-small" class="amd-v1-input-clear-icon" type="CloseCircleFill" ></icon>
     </view>
