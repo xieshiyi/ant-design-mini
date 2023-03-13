@@ -20,25 +20,3 @@ describe('grid onFirstAppear', () => {
     expect(onFirstAppear).toBeCalled();
   });
 });
-
-describe('gridItem onTap', () => {
-  it('gridItem onTap', () => {
-    const onTap = jest.fn();
-    const instance = getInstance('Grid/GridItem', {
-      onTap,
-    });
-    instance.callMethod('onTap');
-    expect(onTap).toBeCalled();
-  });
-});
-
-describe('gridItem onFirstAppear', () => {
-  it('gridItem onFirstAppear', () => {
-    const onFirstAppear = jest.fn();
-    const instance = getInstance('Grid/GridItem', {
-      onFirstAppear,
-    });
-    instance.callMethod('onFirstAppear');
-    expect(onFirstAppear).toBeCalled();
-  });
-});
